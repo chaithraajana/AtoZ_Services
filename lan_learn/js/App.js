@@ -167,9 +167,9 @@ class GTongueLearnApp {
     showPage(pageId) {
         const previousPage = this.currentPage;
 
-        // Pause auto-advance when leaving Dialogue page
+        // Cleanup when leaving Dialogue page
         if (previousPage === 'dialogue' && pageId !== 'dialogue') {
-            window.dialoguePage?.stopAutoAdvance?.();
+            window.dialoguePage?.cleanup?.();
         }
 
         // Hide all pages

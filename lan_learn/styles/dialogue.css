@@ -570,4 +570,338 @@
     .text-2xl {
         font-size: 1.125rem;
     }
+}
+
+/* Session Timer Styles */
+.session-timer-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.session-timer-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.session-timer-display.time-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    animation: pulse 1s infinite;
+}
+
+.session-timer-display.time-expired {
+    background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);
+}
+
+.session-timer-display.timer-paused {
+    background: linear-gradient(135deg, #ffa500 0%, #ff6347 100%);
+    opacity: 0.8;
+}
+
+.session-timer-display.timer-paused::after {
+    content: ' ⏸';
+    font-size: 1.2rem;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Time Warning Toast */
+.time-warning-toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+}
+
+.time-warning-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Time Expired Modal */
+.time-expired-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.time-expired-modal.show {
+    opacity: 1;
+}
+
+.time-expired-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 450px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.time-expired-content h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.time-expired-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.time-expired-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.time-expired-actions .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-expired-actions .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.time-expired-actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.time-expired-actions .btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.time-expired-actions .btn-secondary:hover {
+    background: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Session Duration Modal */
+.session-duration-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.session-duration-modal.show {
+    opacity: 1;
+}
+
+.session-duration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.session-duration-content h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.session-duration-content p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #666;
+    text-align: center;
+}
+
+.duration-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.duration-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.duration-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.custom-duration {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.custom-duration input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 150px;
+    font-size: 1rem;
+}
+
+.custom-duration input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.custom-duration input::placeholder {
+    color: #aaa;
+}
+
+.custom-duration button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-duration button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Mobile Responsive Styles for New Elements */
+@media (max-width: 768px) {
+    .session-timer-display {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    
+    .time-warning-toast {
+        right: 10px;
+        top: 80px;
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+    
+    .time-expired-content,
+    .session-duration-content {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    
+    .time-expired-content h3,
+    .session-duration-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .duration-options {
+        flex-direction: column;
+    }
+    
+    .duration-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .session-timer-display {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+    
+    .time-expired-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .time-expired-actions .btn {
+        width: 100%;
+    }
+    
+    .custom-duration {
+        flex-direction: column;
+    }
+    
+    .custom-duration input {
+        width: 100%;
+    }
+    
+    .custom-duration button {
+        width: 100%;
+    }
 } 

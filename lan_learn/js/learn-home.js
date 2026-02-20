@@ -190,7 +190,7 @@ class LearnHome {
         }
     }
 
-    startLearning() {
+    async startLearning() {
         if (this.selectedLearners.length === 0) {
             const warningMessage = document.getElementById('warning-message');
             if (warningMessage) {
@@ -200,13 +200,17 @@ class LearnHome {
             return;
         }
 
-        // Navigate to dialogue page
+        // Show duration modal FIRST (on home page) so it always displays
+        let selectedMinutes = 0;
+        if (window.dialoguePage && typeof window.dialoguePage.showSessionDurationModal === 'function') {
+            selectedMinutes = await window.dialoguePage.showSessionDurationModal();
+        }
+
+        // Then navigate and initialize with selected duration
         if (app) {
             app.showPage('dialogue');
-            
-            // Initialize dialogue page with selected learners
             if (window.dialoguePage) {
-                window.dialoguePage.initializeWithLearners(this.getSelectedLearnerNames());
+                await window.dialoguePage.initializeWithLearners(this.getSelectedLearnerNames(), selectedMinutes);
             }
         }
     }

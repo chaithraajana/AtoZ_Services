@@ -7,7 +7,7 @@ const DialogueData = {
 Conversation 1 
 Basic Introduction and Greetings
 Person 1: Good morning! Had breakfast?
-Person 2: Yes, had idli and chutney. You?
+Person 2: Yes, had idli and chutney. You?  Good morning! Had breakfast? Yes, had idli and chutney. You? I had dosa today.Same here. Nothing like hot dosa in the morning!
 Person 3: I had dosa today.
 Person 4: Same here. Nothing like hot dosa in the morning!
 
